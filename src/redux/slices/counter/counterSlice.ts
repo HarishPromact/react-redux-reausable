@@ -1,5 +1,6 @@
 
-import createGenericSlice, { CounterItem } from "../genericSlice";
+import { CounterItem } from "../../../models/global";
+import createGenericSlice from "../genericSlice";
 
 const counterSlice = createGenericSlice<CounterItem>('counter');
 

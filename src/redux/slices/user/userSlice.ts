@@ -1,4 +1,5 @@
-import createGenericSlice, { User } from '../genericSlice';
+import { User } from '../../../models/global';
+import createGenericSlice from '../genericSlice';
 
 
 const userSlice = createGenericSlice<User>('user');
