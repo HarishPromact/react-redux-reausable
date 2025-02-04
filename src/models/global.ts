@@ -10,3 +10,17 @@ export interface CounterItem {
     mobileNumber: string;
     [key: string]: unknown; 
   }
+
+  export interface GenericState<T> {
+    items: T[];
+    selectedItem?: T;
+    loading: boolean;
+    error: string | null;
+  }
+  
+  // Updated DraftableItem type
+  export type DraftableItem = {
+    id: string | number;
+    [key: string]: unknown;
+  };
+  

@@ -1,23 +1,5 @@
 import { createSlice, PayloadAction, Draft } from "@reduxjs/toolkit";
-
-// counterTypes.ts
-
-
-// genericSlice.ts
-
-
-export interface GenericState<T> {
-  items: T[];
-  selectedItem?: T;
-  loading: boolean;
-  error: string | null;
-}
-
-// Updated DraftableItem type
-export type DraftableItem = {
-  id: string | number;
-  [key: string]: unknown;
-};
+import { DraftableItem, GenericState } from "../../models/global";
 
 const createGenericSlice = <T extends DraftableItem>(name: string) => {
   const initialState: GenericState<T> = {

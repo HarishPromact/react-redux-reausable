@@ -10,9 +10,11 @@ import "../App.css"
 const Counter: React.FC = () => {
   const dispatch = useAppDispatch();
   const counters = useAppSelector((state) => state.counter.items);
+  const addCounterCalled = useRef(false); 
 
-  const addCounterCalled = useRef(false); // Ref to track if `addCounter` has been called
-
+  /**
+   * This method is used to add counter
+   */
   const addCounter = () => {
     const newCounter: CounterItem = {
       id: counters.length + 1,
@@ -21,6 +23,11 @@ const Counter: React.FC = () => {
     dispatch(createCounter(newCounter));
   };
 
+  /**
+   * Increment or decrement counter method
+   * @param id number
+   * @param value boolean value
+   */
   const incrementCounter = (id: number, value: boolean) => {
     const counter = counters.find((c: CounterItem) => c.id === id);
     if (counter && value) {
@@ -30,12 +37,15 @@ const Counter: React.FC = () => {
     }
   };
 
+  /**
+   * useEffect 
+   */
   useEffect(() => {
     if (!addCounterCalled.current) {
       addCounter();
-      addCounterCalled.current = true; // Mark as called
+      addCounterCalled.current = true; 
     }
-  }, []); // Empty dependency array ensures this runs once
+  }, []);
 
   return (
     <div>
