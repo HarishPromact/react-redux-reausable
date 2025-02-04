@@ -1,6 +1,11 @@
 import { createSlice, PayloadAction, Draft } from "@reduxjs/toolkit";
 import { DraftableItem, GenericState } from "../../models/global";
 
+/**
+ * Create a generic slice for a given name
+ * @param name name of slice
+ * @returns slice object
+ */
 const createGenericSlice = <T extends DraftableItem>(name: string) => {
   const initialState: GenericState<T> = {
     items: [],
@@ -8,6 +13,9 @@ const createGenericSlice = <T extends DraftableItem>(name: string) => {
     error: null,
   };
 
+  /**
+   * Create a slice for a given name
+   */
   const slice = createSlice({
     name,
     initialState,

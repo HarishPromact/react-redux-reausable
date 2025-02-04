@@ -9,11 +9,14 @@ import {
 import { User } from "../models/global";
 import "../App.css";
 
-const UserComponent: React.FC = () => {
+export default function UserComponent () {
   const dispatch = useAppDispatch();
   const users = useAppSelector((state) => state.user.items);
   const selectedUser = useAppSelector((state) => state.user.selectedItem);
 
+  /**
+   * This function is used to add a new user
+   */
   const addUser = useCallback(() => {
     const newUser: User = {
       id: crypto.randomUUID(),
@@ -23,6 +26,9 @@ const UserComponent: React.FC = () => {
     dispatch(createUser(newUser));
   }, [dispatch]);
 
+  /**
+   * This function is used to update an existing user
+   */
   const handleUpdateUser = useCallback(
     (updatedUser: User) => {
       const existingUser = users.find((user) => user.id === updatedUser.id);
@@ -37,6 +43,9 @@ const UserComponent: React.FC = () => {
     [dispatch, users]
   );
 
+  /**
+   * This function is used to delete an existing user
+   */
   const handleDeleteUser = useCallback(
     (id: string) => {
       if (selectedUser?.id === id) {
@@ -54,11 +63,17 @@ const UserComponent: React.FC = () => {
     [dispatch]
   );
 
+  /**
+   * This function is used to validate user input
+   * @param value user input
+   * @param type input type
+   * @returns boolean value
+   */
   const validateInput = (value: string, type: string) => {
     if (type === "mobileNumber") {
-      return /^\d*$/.test(value); // Allow only numbers
+      return /^\d*$/.test(value);
     }
-    return true; // Accept all for name
+    return true;
   };
 
   return (
@@ -131,4 +146,3 @@ const UserComponent: React.FC = () => {
   );
 };
 
-export default UserComponent;

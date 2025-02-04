@@ -5,15 +5,15 @@ import {
   updateCounter,
 } from "../redux/slices/counter/counterSlice";
 import { CounterItem } from "../models/global";
-import "../App.css"
+import "../App.css";
 
-const Counter: React.FC = () => {
+export default function Counter() {
   const dispatch = useAppDispatch();
   const counters = useAppSelector((state) => state.counter.items);
-  const addCounterCalled = useRef(false); 
+  const addCounterCalled = useRef(false);
 
   /**
-   * This method is used to add counter
+   * This method is used to add a new counter
    */
   const addCounter = () => {
     const newCounter: CounterItem = {
@@ -24,8 +24,8 @@ const Counter: React.FC = () => {
   };
 
   /**
-   * Increment or decrement counter method
-   * @param id number
+   * This function is used to increment or decrement the counter value
+   * @param id counter id
    * @param value boolean value
    */
   const incrementCounter = (id: number, value: boolean) => {
@@ -38,14 +38,14 @@ const Counter: React.FC = () => {
   };
 
   /**
-   * useEffect 
+   * UseEffect
    */
   useEffect(() => {
     if (!addCounterCalled.current) {
       addCounter();
       addCounterCalled.current = true; 
     }
-  }, []);
+  }, []); 
 
   return (
     <div>
@@ -73,6 +73,4 @@ const Counter: React.FC = () => {
       </div>
     </div>
   );
-};
-
-export default Counter;
+}
